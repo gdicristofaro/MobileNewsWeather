@@ -229,7 +229,7 @@ var _NewsWeatherItems = function _NewsWeatherItems() {
    * @param  {string} location zip code for location
    */
   this.requestNews = function (location) {
-    var newsSource = "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20rss%20where%20url%20%3D%20'http%3A%2F%2Fnews.google.com%2Fnews%3Fgeo%3D" + location + "%26output%3Drss'&format=json&diagnostics=true&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys";
+    var newsSource = "//query.yahooapis.com/v1/public/yql?q=select%20*%20from%20rss%20where%20url%20%3D%20'http%3A%2F%2Fnews.google.com%2Fnews%3Fgeo%3D" + location + "%26output%3Drss'&format=json&diagnostics=true&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys";
 
     $.get(newsSource, function (result) {
       that.newsItems = result.query.results.item;
@@ -242,7 +242,7 @@ var _NewsWeatherItems = function _NewsWeatherItems() {
    * @param  {string} location zip code
    */
   this.requestWeather = function (location) {
-    var weatherSource = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22" + location + "%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys";
+    var weatherSource = "//query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22" + location + "%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys";
 
     $.get(weatherSource, function (result) {
       // get to the actual data
