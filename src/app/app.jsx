@@ -272,7 +272,7 @@ var _NewsWeatherItems = function() {
    * @param  {string} location zip code for location
    */
   this.requestNews = function(location) {
-    var newsSource = "//query.yahooapis.com/v1/public/yql?q=select%20*%20from%20rss%20where%20url%20%3D%20'http%3A%2F%2Fnews.google.com%2Fnews%3Fgeo%3D" + location + "%26output%3Drss'&format=json&diagnostics=true&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys";
+    var newsSource = "//query.yahooapis.com/v1/public/yql?q=select%20*%20from%20rss%20where%20url%20%3D%20'https%3A%2F%2Fnews.google.com%2Frss%2Flocal%2Fsection%2Fgeo%2F" + location + "%2F" + location + "%3Fned%3Dus%26hl%3Den%26gl%3DUS'&format=json&diagnostics=true&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys";
 
     $.get(newsSource, function (result) {
       that.newsItems = result.query.results.item;
