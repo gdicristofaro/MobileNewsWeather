@@ -293,7 +293,8 @@ var _NewsWeatherItems = function() {
 
       // initialize the weatherItems
       that.weatherItem = {};
-      that.weatherItem.description = result.description.replace("<![CDATA[", "").replace("]]>", "");;
+      that.weatherItem.description = result.description.replace("<![CDATA[", "").replace("]]>", "")
+        .replace("http://us.rd.yahoo.com/dailynews/rss/weather/Country__Country/*", "");
       that.weatherItem.weatherImg = $(that.weatherItem.description).closest('img').attr('src');
 
       // just forecast to the number we want
@@ -306,8 +307,9 @@ var _NewsWeatherItems = function() {
       that.weatherItem.conditionDegrees = result.condition.temp;
       that.weatherItem.conditionText = result.condition.text;
       that.weatherItem.linkText = "Go to Weather Page";
-      that.weatherItem.link = result.link;
-
+      that.weatherItem.link = result.link.substring(
+        "http://us.rd.yahoo.com/dailynews/rss/weather/Country__Country/*".length);
+        
       that.onWeatherLoad.onEvent(that.weatherItem);
     });
   }
@@ -492,7 +494,7 @@ var ContentPage = React.createClass({
         </div>);
 
         return (
-            <div data-role="page" id={this.props.pageID} data-title={this.props.header} headerTheme="a">
+            <div data-role="page" id={this.props.pageID} data-title={this.props.header}>
               <div data-role="header">
                 <h1>{this.props.header}</h1>
                 <a href="#" data-rel="back" data-icon="back" className="ui-btn-left">Back</a>
@@ -608,7 +610,7 @@ var LocationPage = React.createClass({
       });
 
         return (
-          <div data-role="page" data-title="Set Location" id="LocationPage" headerTheme="a">
+          <div data-role="page" data-title="Set Location" id="LocationPage">
             {/* header */}
             <div data-role="header">
               <a href="#" data-rel="back" data-icon="back" className="ui-btn-left">Back</a>
